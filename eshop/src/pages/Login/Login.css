@@ -1,0 +1,20 @@
+.login-container{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
+    height: 87vh;
+}
+
+.form-panel{
+    border-style: ridge;
+    border-radius: 10px;
+    border-color: gray;
+    background-color: #5C4DB6;
+    padding: 100px 200px 100px 200px;
+}
+
+.form-panel h2{
+    text-align: center;
+    color: white;
+}

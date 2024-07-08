@@ -2,7 +2,7 @@
     display: flex;
     justify-content: start;
     align-content: space-between;
-    gap: 20px;
+    gap: 10px;
 }
 
 .nav-link{
@@ -10,9 +10,9 @@
     color: white;
     border-style: outset;
     cursor:pointer;
-    height: 50px;
-    width: 100px;
-    font-size: large;
+    height: 30px;
+    width: 70px;
+    font-size:medium;
 }
 
 .nav-link:hover{

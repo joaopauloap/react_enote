@@ -1,0 +1,6 @@
+.default-input{
+    border-style: inset;
+    border-radius: 5px;
+    border-width: 3px;
+    border-color: gray;
+}

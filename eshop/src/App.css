@@ -4,9 +4,15 @@ body{
 }
 
 .container{
-  background-color:mediumpurple;
+  background-color:#684F9C;
   color:azure;
-  height: 80vh;
+  height: 87vh;
   padding-left: 10px;
   padding-right: 10px;
+  margin-top: 10px;
+}
+
+.container .pageTitle h1{
+  margin-top: 0;
+  margin-bottom: 0;
 }

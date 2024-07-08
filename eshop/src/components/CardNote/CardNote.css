@@ -1,0 +1,23 @@
+.card-container{
+    /* width: 150px; */
+    height: 150px;
+    background-color: #57519C;
+    border-style: ridge;
+    border-color: black;
+    border-radius: 5px;
+    border-width: 3px;
+}
+
+.card-title{
+    text-align: center;
+}
+
+.card-title h4{
+    margin: 0 0 0 0 ;
+}
+
+
+.card-description{
+    /* text-align: justify; */
+    padding: 0px 10px 0px 10px;
+}
