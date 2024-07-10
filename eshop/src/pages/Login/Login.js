@@ -6,10 +6,10 @@ import API_URLS from "../../config/apiUrls"
 import { useNavigate } from "react-router-dom"
 import { AlertContext } from "../../contexts/AlertContext"
 import RequestErrorHandler from "../../services/requestErrorHandler"
-import "./Login.css";
+import "./Login.css"
 import { UserContext } from "../../contexts/UserContext"
 
-function Login({ onLogin }) {
+function Login() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -38,13 +38,12 @@ function Login({ onLogin }) {
       .catch((error) => {
         console.log(error)
         showAlert(RequestErrorHandler(error))
-      });
+      })
   }
 
   function handleRegister() {
-    try {
       axios
-        .post(API_URLS.LOGIN, { email: email, password: password, name: name })
+        .post(API_URLS.REGISTER, { email: email, password: password, name: name })
         .then((response) => {
           console.log(response.data)
           if (response.data) {
@@ -52,11 +51,11 @@ function Login({ onLogin }) {
             setUser(response.data)
             navigate("/home")
           }
-        });
-    } catch (error) {
+        })
+    .catch((error) =>{
       console.log(error)
       showAlert(RequestErrorHandler(error))
-    }
+    })
   }
 
   return (
@@ -81,10 +80,8 @@ function Login({ onLogin }) {
             />
             </form>
             <div className="button-group">
+              <a href="#" onClick={() => setIsLogin(false)}>ou cadastre-se</a>
               <Button id="btnLogin" value="Entrar" onClick={handleLogin} />
-              <a href="#" onClick={() => setIsLogin(false)}>
-                Cadastrar
-              </a>
             </div>
           </>
         ) : (
@@ -115,20 +112,15 @@ function Login({ onLogin }) {
               onChange={handleNameChange}
             />
             <div className="button-group">
-              <Button
-                id="btnRegister"
-                value="Cadastrar"
-                onClick={handleRegister}
+              <a href="#" onClick={() => setIsLogin(true)}>volte para Entrar</a>
+              <Button id="btnRegister" value="Cadastrar" onClick={handleRegister}
               />
-              <a href="#" onClick={() => setIsLogin(true)}>
-                Entrar
-              </a>
             </div>
           </>
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login
