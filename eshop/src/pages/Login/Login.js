@@ -1,42 +1,43 @@
-import React, { useContext, useEffect, useState } from "react";
-import InputLabel from "../../components/InputLabel/InputLabel";
-import Button from "../../components/Button/Button";
-import axios from "axios";
-import API_URLS from "../../config/apiUrls";
-import { useNavigate } from "react-router-dom";
-import { AlertContext } from "../../contexts/AlertContext";
+import React, { useContext, useEffect, useState } from "react"
+import InputLabel from "../../components/InputLabel/InputLabel"
+import Button from "../../components/Button/Button"
+import axios from "axios"
+import API_URLS from "../../config/apiUrls"
+import { useNavigate } from "react-router-dom"
+import { AlertContext } from "../../contexts/AlertContext"
+import RequestErrorHandler from "../../services/requestErrorHandler"
 import "./Login.css";
+import { UserContext } from "../../contexts/UserContext"
 
 function Login({ onLogin }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isLogin, setIsLogin] = useState(true);
-  const navigate = useNavigate();
-  const { showAlert } = useContext(AlertContext);
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [isLogin, setIsLogin] = useState(true)
+  const navigate = useNavigate()
+  const { showAlert } = useContext(AlertContext)
+  const { setUser } = useContext(UserContext);
 
-  const handleNameChange = (e) => setName(e.target.value);
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
-  const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
+  const handleNameChange = (e) => setName(e.target.value)
+  const handleEmailChange = (e) => setEmail(e.target.value)
+  const handlePasswordChange = (e) => setPassword(e.target.value)
+  const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value)
 
   function handleLogin() {
-    showAlert('Login successful!');
-
     axios
       .post(API_URLS.LOGIN, { email: email, password: password })
       .then((response) => {
-        console.log(response.data);
+        console.log(response.data)
         if (response.data) {
-          localStorage.setItem("user", JSON.stringify(response.data));
-          onLogin(response.data);
-          navigate("/home");
+          localStorage.setItem("user", JSON.stringify(response.data))
+          setUser(response.data)
+          navigate("/home")
         }
       })
       .catch((error) => {
-        console.log(error);
-        showAlert("Login failed. Please try again." + error);
+        console.log(error)
+        showAlert(RequestErrorHandler(error))
       });
   }
 
@@ -45,16 +46,16 @@ function Login({ onLogin }) {
       axios
         .post(API_URLS.LOGIN, { email: email, password: password, name: name })
         .then((response) => {
-          console.log(response.data);
+          console.log(response.data)
           if (response.data) {
-            localStorage.setItem("user", JSON.stringify(response.data));
-            onLogin(response.data);
-            navigate("/home");
+            localStorage.setItem("user", JSON.stringify(response.data))
+            setUser(response.data)
+            navigate("/home")
           }
         });
     } catch (error) {
-      console.log(error);
-      showAlert("Register failed. Please try again." + error);
+      console.log(error)
+      showAlert(RequestErrorHandler(error))
     }
   }
 
@@ -64,6 +65,7 @@ function Login({ onLogin }) {
         <h2>eShop</h2>
         {isLogin ? (
           <>
+          <form>
             <InputLabel
               labelValue="E-mail"
               id="email"
@@ -77,6 +79,7 @@ function Login({ onLogin }) {
               value={password}
               onChange={handlePasswordChange}
             />
+            </form>
             <div className="button-group">
               <Button id="btnLogin" value="Entrar" onClick={handleLogin} />
               <a href="#" onClick={() => setIsLogin(false)}>

@@ -9,36 +9,35 @@ import Notes from "./pages/Notes/Notes";
 import "./App.css";
 import AlertContainer from "./components/Alert/AlertContainer";
 import { AlertProvider } from "./contexts/AlertContext";
+import { UserProvider } from "./contexts/UserContext";
 
 function App() {
-  const [userData, setUserData] = useState(null);
-
-  const handleLoginData = (data) => {
-    setUserData(data);
-  };
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setUserData(JSON.parse(storedUser));
+      setUser(JSON.parse(storedUser));
     }
   }, []);
 
   return (
+    <UserProvider value={{ user, setUser }}>
     <AlertProvider>
       <Router>
-        {userData && <Navbar />}
+        {user && <Navbar />}
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/home" element={<Home />}></Route>
+          <Route path="/" element={user==null?<Login/>:<Home />}></Route>
+          <Route path="/home" element={user==null?<Login/>:<Home />}></Route>
           <Route path="/about" element={<About />}></Route>
-          <Route path="/login" element={<Login onLogin={handleLoginData} />}></Route>
-          <Route path="/notes" element={<Notes />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/notes" element={user==null?<Login/>:<Notes />}></Route>
         </Routes>
         <Footer></Footer>
         <AlertContainer />
       </Router>
     </AlertProvider>
+    </UserProvider>
   );
 }
 
