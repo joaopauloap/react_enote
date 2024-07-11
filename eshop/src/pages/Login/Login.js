@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom"
 import { AlertContext } from "../../contexts/AlertContext"
 import RequestErrorHandler from "../../services/requestErrorHandler"
 import "./Login.css"
-import { UserContext } from "../../contexts/UserContext"
 
-function Login() {
+function Login({ setUser }) {
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -17,8 +17,7 @@ function Login() {
   const [isLogin, setIsLogin] = useState(true)
   const navigate = useNavigate()
   const { showAlert } = useContext(AlertContext)
-  const { setUser } = useContext(UserContext);
-
+  
   const handleNameChange = (e) => setName(e.target.value)
   const handleEmailChange = (e) => setEmail(e.target.value)
   const handlePasswordChange = (e) => setPassword(e.target.value)

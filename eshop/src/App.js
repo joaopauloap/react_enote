@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
@@ -9,35 +9,36 @@ import Notes from "./pages/Notes/Notes";
 import "./App.css";
 import AlertContainer from "./components/Alert/AlertContainer";
 import { AlertProvider } from "./contexts/AlertContext";
-import { UserProvider } from "./contexts/UserContext";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('user')));
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    if (!user) {
+      navigate('/login');
     }
-  }, []);
+  }, [user, navigate]);
+
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem('user');
+    navigate('/login');
+  }
 
   return (
-    <UserProvider value={{ user, setUser }}>
     <AlertProvider>
-      <Router>
-        {user && <Navbar />}
+        {user && <Navbar user={user} onLogout={handleLogout} />}
         <Routes>
-          <Route path="/" element={user==null?<Login/>:<Home />}></Route>
-          <Route path="/home" element={user==null?<Login/>:<Home />}></Route>
+          <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+          <Route path="/home" element={user ? <Home /> : <Navigate to="/login" />} />
           <Route path="/about" element={<About />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/notes" element={user==null?<Login/>:<Notes />}></Route>
+          <Route path="/login" element={user?<Navigate to="/home"/> : <Login setUser={setUser} />} />
+          <Route path="/notes" element={user ? <Notes /> : <Navigate to="/login" />} />
         </Routes>
         <Footer></Footer>
         <AlertContainer />
-      </Router>
     </AlertProvider>
-    </UserProvider>
   );
 }
 
