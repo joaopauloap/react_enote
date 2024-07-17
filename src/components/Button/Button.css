@@ -1,0 +1,10 @@
+.default-button{
+    border-style: inset;
+    border-radius: 5px;
+    height: 30px;
+    width: 100px;
+    cursor: pointer;
+}
+.default-button:hover{
+    opacity: 0.8;
+}
