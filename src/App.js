@@ -9,6 +9,7 @@ import Notes from "./pages/Notes/Notes";
 import "./App.css";
 import AlertContainer from "./components/Alert/AlertContainer";
 import { AlertProvider } from "./contexts/AlertContext";
+import Register from "./pages/Login/Register";
 
 function App() {
   const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('user')));
@@ -16,7 +17,7 @@ function App() {
 
   useEffect(() => {
     if (!user) {
-      navigate('/login');
+      //navigate('/login');
     }
   }, [user, navigate]);
 
@@ -28,16 +29,17 @@ function App() {
 
   return (
     <AlertProvider>
-        {user && <Navbar user={user} onLogout={handleLogout} />}
-        <Routes>
-          <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
-          <Route path="/home" element={user ? <Home /> : <Navigate to="/login" />} />
-          <Route path="/about" element={<About />}></Route>
-          <Route path="/login" element={user?<Navigate to="/home"/> : <Login setUser={setUser} />} />
-          <Route path="/notes" element={user ? <Notes /> : <Navigate to="/login" />} />
-        </Routes>
-        <Footer></Footer>
-        <AlertContainer />
+      {user && <Navbar user={user} onLogout={handleLogout} />}
+      <Routes>
+        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/home" element={user ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/about" element={<About />}></Route>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={user ? <Navigate to="/home" /> : <Login setUser={setUser} />} />
+        <Route path="/notes" element={user ? <Notes /> : <Navigate to="/login" />} />
+      </Routes>
+      <Footer></Footer>
+      <AlertContainer />
     </AlertProvider>
   );
 }

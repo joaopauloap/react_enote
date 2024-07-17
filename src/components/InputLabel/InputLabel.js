@@ -2,13 +2,11 @@ import React from "react";
 import './InputLabel.css'
 import Input from "../Input/Input";
 
-function InputLabel(props) {
+export default function InputLabel({ id, labelValue, type, onChange, register = () => { }, validation, errors, ...rest }) {
     return (
         <div className="input-container">
-            <label htmlFor={props.id}>{props.labelValue}</label>
-            <Input type={props.type} id={props.id} onChange={props.onChange}></Input>
+            <label htmlFor={id}>{labelValue}</label>
+            <Input type={type} id={id} onChange={onChange} register={register} validation={validation} errors={errors} {...rest}></Input>
         </div>
     );
 }
-
-export default InputLabel;

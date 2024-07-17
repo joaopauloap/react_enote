@@ -1,6 +1,10 @@
-.default-input{
+.default-input {
     border-style: inset;
     border-radius: 5px;
     border-width: 3px;
     border-color: gray;
+}
+
+.error {
+    color: rgb(255, 180, 0);
 }
