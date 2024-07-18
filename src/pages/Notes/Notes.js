@@ -9,7 +9,7 @@ function Notes() {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        axios.get(API_URLS.GET_ALL_NOTES)
+        axios.get(API_URLS.NOTES)
             .then(res => {
                 setData(res.data)
             });

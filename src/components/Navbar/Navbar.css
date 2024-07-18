@@ -1,7 +1,6 @@
 .nav-container{
     display: flex;
-    justify-content: start;
-    align-content: space-between;
+    justify-content: space-between;
     gap: 10px;
 }
 
@@ -17,4 +16,10 @@
 
 .nav-link:hover{
     border-style: inset;
+}
+
+.logout-container{
+    display: flex;
+    padding-right: 10px;
+    gap: 15px;
 }

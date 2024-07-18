@@ -19,22 +19,23 @@ function Login({ setUser }) {
   const handlePasswordChange = (e) => setPassword(e.target.value)
 
   function handleLogin() {
-    axios
-      .post(API_URLS.LOGIN, { email: email, password: password })
-      .then((response) => {
-        console.log(response.data)
-        if (response.data) {
-          localStorage.setItem("user", JSON.stringify(response.data))
-          setUser(response.data)
-          navigate("/home")
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-        showAlert(RequestErrorHandler(error))
-      })
+    if (email && password) {
+      axios
+        .post(API_URLS.LOGIN, { email: email, password: password })
+        .then((response) => {
+          console.log(response.data)
+          if (response.data) {
+            localStorage.setItem("user", JSON.stringify(response.data))
+            setUser(response.data)
+            navigate("/home")
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+          showAlert(RequestErrorHandler(error))
+        })
+    }
   }
-
   return (
     <div className="login-container">
       <div className="form-panel">
