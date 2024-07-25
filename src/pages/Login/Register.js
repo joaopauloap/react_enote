@@ -5,10 +5,10 @@ import axios from "axios"
 import API_URLS from "../../config/apiUrls"
 import { useNavigate } from "react-router-dom"
 import { AlertContext } from "../../contexts/AlertContext"
-import RequestErrorHandler from "../../services/requestErrorHandler"
 import { useForm } from 'react-hook-form';
 
 import "./Login.css"
+import axiosInstance from "../../services/axiosInstance"
 
 function Register() {
 
@@ -17,7 +17,7 @@ function Register() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = data => {
-    axios
+    axiosInstance
       .post(API_URLS.REGISTER, { email: data.email, password: data.password, name: data.name, phone: data.phone })
       .then((response) => {
         console.log(response.data)
@@ -28,7 +28,7 @@ function Register() {
       })
       .catch((error) => {
         console.log(error)
-        showAlert(RequestErrorHandler(error))
+        showAlert((error.response?.data || error.message).slice(0, 100));
       })
   }
 

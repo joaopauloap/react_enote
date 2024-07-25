@@ -5,8 +5,8 @@ import axios from "axios"
 import API_URLS from "../../config/apiUrls"
 import { useNavigate } from "react-router-dom"
 import { AlertContext } from "../../contexts/AlertContext"
-import RequestErrorHandler from "../../services/requestErrorHandler"
 import "./Login.css"
+import axiosInstance from "../../services/axiosInstance"
 
 function Login({ setUser }) {
 
@@ -20,7 +20,7 @@ function Login({ setUser }) {
 
   function handleLogin() {
     if (email && password) {
-      axios
+      axiosInstance
         .post(API_URLS.LOGIN, { email: email, password: password })
         .then((response) => {
           console.log(response.data)
@@ -32,7 +32,7 @@ function Login({ setUser }) {
         })
         .catch((error) => {
           console.log(error)
-          showAlert(RequestErrorHandler(error))
+          showAlert((error.response?.data || error.message).slice(0, 100));
         })
     }
   }
