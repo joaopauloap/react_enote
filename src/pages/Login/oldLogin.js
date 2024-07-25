@@ -61,7 +61,7 @@
 //     <div className="login-container">
 //       <div className="form-panel">
 //         <div className="title-container">
-//           <h1>eShop</h1>
+//           <h1>eNote</h1>
 //           <h4>Lojas virtuais também podem ser roxas</h4>
 //         </div>
 //         {isLogin ?

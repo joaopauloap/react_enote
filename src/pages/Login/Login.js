@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react"
 import InputLabel from "../../components/InputLabel/InputLabel"
 import Button from "../../components/Button/Button"
-import axios from "axios"
 import API_URLS from "../../config/apiUrls"
 import { useNavigate } from "react-router-dom"
 import { AlertContext } from "../../contexts/AlertContext"
-import "./Login.css"
 import axiosInstance from "../../services/axiosInstance"
+import "./Login.css"
+import CONSTANTS from "../../config/constants"
 
 function Login({ setUser }) {
 
@@ -40,8 +40,8 @@ function Login({ setUser }) {
     <div className="login-container">
       <div className="form-panel">
         <div className="title-container">
-          <h1>eShop</h1>
-          <h4>Lojas virtuais também podem ser roxas</h4>
+          <h1>{CONSTANTS.TITLE}</h1>
+          <h4>{CONSTANTS.SUBTITLE}</h4>
         </div>
         <div className="login-container-fields">
           <form>

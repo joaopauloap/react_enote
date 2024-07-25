@@ -12,8 +12,8 @@ function Navbar({ onLogout, user }) {
         <Link to="/notes"><button className="nav-link">Notas</button></Link>
       </div>
       <div className="logout-container">
-        <Link to="/profile"><a>{user.name}</a></Link>
-        <a href="" onClick={onLogout}>Sair</a>
+        <Link to="/profile">{user.name}</Link>
+        <Link onClick={onLogout}>Sair</Link>
       </div>
     </nav>
   );

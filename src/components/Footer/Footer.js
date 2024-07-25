@@ -5,7 +5,7 @@ function Footer(){
 return (
 
     <div className="footer">
-        <p>eShop by João Paulo Porto - 2024</p>
+        <p>eNote by João Paulo Porto - 2024</p>
     </div>
 
 );

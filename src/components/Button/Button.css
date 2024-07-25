@@ -8,3 +8,13 @@
 .default-button:hover{
     opacity: 0.8;
 }
+
+.button-icon{
+    display: flex;
+    align-content: center;
+    color: white;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+}
