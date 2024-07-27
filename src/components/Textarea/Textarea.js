@@ -1,10 +1,11 @@
 import React from "react";
-import './Input.css'
+import './Textarea.css'
 
-export default function Input({ id, type, onChange, register = () => { }, validation, errors, ...rest }) {
+export default function Textarea({ id, rows, onChange, register = () => { }, validation, errors, ...rest }) {
     return (
         <>
-            <input type={type} className="default-input" id={id} onChange={onChange} {...register(id, validation)} {...rest}></input>
+            <textarea rows={(rows > 0) ? rows : 5} className="default-textarea" id={id} onChange={onChange} {...register(id, validation)} {...rest}>
+            </textarea>
             {errors && errors[id]?.type === "required" && (
                 <span className="error">{errors[id]?.message}</span>
             )}

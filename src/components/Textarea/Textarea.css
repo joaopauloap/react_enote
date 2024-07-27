@@ -1,9 +1,10 @@
-.default-input {
+.default-textarea {
     display: flex;
     border-style: inset;
     border-radius: 5px;
     border-width: 3px;
     border-color: gray;
+    width: 100%;
 }
 
 .error {

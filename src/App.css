@@ -18,9 +18,15 @@ body{
   align-items: center;
   gap: 15px;
 }
-.container .page-title h1{
+.container .page-title h1, h2, h3, h4{
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.page-options{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
 a{

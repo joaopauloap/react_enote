@@ -3,13 +3,16 @@ import '../Home/Home.css';
 
 
 
-function Home(){
+function Home() {
 
-    return(
+    return (
         <div className="container">
-            <div className="page-title"><h1>Home</h1></div>
+            <div className="page-title"><h3>Home</h3></div>
             <hr></hr>
-            <p>Lorem ipsum dolor sit amet</p>
+            <div className="page-content">
+                <h2>Bem-vindo ao eNote!</h2>
+                <h3>Sua Ferramenta Ideal para Notas e Organização</h3>
+            </div>
         </div>
     );
 }
