@@ -4,16 +4,15 @@ import CardNote from "../../components/CardNote/CardNote";
 import Button from "../../components/Button/Button";
 import axiosInstance from "../../services/axiosInstance";
 import useToggle from "../../hooks/useToggle";
-import Input from "../../components/Input/Input";
 import Modal from "../../components/Modal/Modal";
 import { AlertContext } from "../../contexts/AlertContext";
 import { MdOutlineNoteAdd } from "react-icons/md";
 import { IoMdRefresh } from "react-icons/io";
 import { IoTrashBinOutline } from "react-icons/io5";
 import { useForm } from "react-hook-form";
-import './Notes.css';
 import InputLabel from "../../components/InputLabel/InputLabel";
 import Textarea from "../../components/Textarea/Textarea";
+import './Notes.css';
 
 function Notes() {
 
@@ -64,15 +63,14 @@ function Notes() {
             <hr></hr>
             <div className="page-content">
                 <Modal title="Criar nova nota" show={isShowingModal} onCloseButtonClick={toggleModal} onConfirmButtonClick={handleSubmit(createNewNote)}>
-                    <div>
-                        <InputLabel placeholder="Título" id="titulo" register={register} validation={{
-                            required: "Título é obrigatório",
-                            minLength: {
-                                value: 3,
-                                message: "Digite o mínimo de 3 caracteres"
-                            }
-                        }} errors={errors} />
-
+                    <InputLabel placeholder="Título" id="titulo" register={register} validation={{
+                        required: "Título é obrigatório",
+                        minLength: {
+                            value: 3,
+                            message: "Digite o mínimo de 3 caracteres"
+                        }
+                    }} errors={errors} />
+                    <div style={{display: 'flex'}}>
                         <Textarea placeholder="Escreva aqui seu conteúdo..." id="conteudo" register={register} />
                     </div>
                 </Modal>
