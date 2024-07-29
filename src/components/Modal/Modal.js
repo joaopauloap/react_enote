@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import './Modal.css'
 import Button from '../Button/Button';
 
-export default function Modal({ children, title, show, onCloseButtonClick, onConfirmButtonClick }) {
+export default function Modal({ children, header, show, onCloseButtonClick, onConfirmButtonClick }) {
     if (!show) return null;
     
     return ReactDOM.createPortal(
@@ -11,7 +11,7 @@ export default function Modal({ children, title, show, onCloseButtonClick, onCon
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title">{title}</h5>
+                        <h5 className="modal-title">{header}</h5>
                         <button type="button" className="close" onClick={onCloseButtonClick}>&times;</button>
                     </div>
                     <div className="modal-body">

@@ -1,10 +1,10 @@
 import React from "react";
 import './Input.css'
 
-export default function Input({ id, type, onChange, register = () => { }, validation, errors, ...rest }) {
+export default function Input({ id, type, value, onChange, register = () => { }, validation, errors, ...rest }) {
     return (
         <>
-            <input type={type} className="default-input" id={id} onChange={onChange} {...register(id, validation)} {...rest}></input>
+            <input type={type} value={value} className="default-input" id={id} onChange={onChange} {...register(id, validation)} {...rest}></input>
             {errors && errors[id]?.type === "required" && (
                 <span className="error">{errors[id]?.message}</span>
             )}

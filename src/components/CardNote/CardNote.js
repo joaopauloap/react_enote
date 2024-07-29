@@ -1,10 +1,10 @@
 import React from "react";
 import './CardNote.css'
 
-function CardNote(props){
+function CardNote(props) {
 
-    return(
-        <div className="card-container">
+    return (
+        <div id={props.id} className="card-container" onClick={() => props.onCardClick(props.id)}>
             <div className="card-title"><h4>{props.title}</h4></div>
             <hr></hr>
             <div className="card-description">
@@ -12,7 +12,7 @@ function CardNote(props){
             </div>
         </div>
     );
-    
+
 }
 
 export default CardNote;
